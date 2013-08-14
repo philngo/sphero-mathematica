@@ -1,6 +1,6 @@
 # Sphero/Mathematica Connection
 
-## Connect to a [Sphero](http://www.gosphero.com/) robot (Orbotix) from within Mathematica
+### Connect to a [Sphero](http://www.gosphero.com/) robot (Orbotix) from within Mathematica
 
 The sample notebook explains how to connect and gives some fun examples. This
 package allows you to control Sphero using Mathematica's powerful built-in
