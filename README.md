@@ -7,9 +7,9 @@ package allows you to control Sphero using Mathematica's powerful built-in
 interface for dynamic control.
 
 What you might want to do with this package:
-    - Change Sphero's color, heading and speed.
-    - Access Sphero's built-in gyrometer and accelerometer.
-    - Write custom scripts.
-    - Use Sphero to dynamically control Graphics3D objects (my personal favorite).
+- Change Sphero's color, heading and speed.
+- Access Sphero's built-in gyrometer and accelerometer.
+- Write custom scripts.
+- Use Sphero to dynamically control Graphics3D objects (my personal favorite).
 
 Enjoy!
