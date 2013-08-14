@@ -1,0 +1,927 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     38445,        918]
+NotebookOptionsPosition[     34041,        784]
+NotebookOutlinePosition[     34401,        800]
+CellTagsIndexPosition[     34358,        797]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Sphero Connection", "Title",
+ CellChangeTimes->{{3.585327499708362*^9, 3.5853275109033527`*^9}, {
+  3.585394210948368*^9, 3.585394214032151*^9}, {3.5854018602270193`*^9, 
+  3.585401924860799*^9}}],
+
+Cell[TextData[{
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " Connection Demonstration"
+}], "Subtitle",
+ CellChangeTimes->{{3.585327519393531*^9, 3.585327527326985*^9}, {
+  3.585401878529174*^9, 3.5854018813615522`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["System Requirements", "Section",
+ CellChangeTimes->{{3.5853275459047947`*^9, 3.585327549334539*^9}, {
+  3.585327938117434*^9, 3.585327940395705*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Support for Bluetooth 2.1 (Bluetooth Classic)", "Item",
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+  3.585328094934423*^9, 3.585328094937077*^9}}],
+
+Cell[TextData[{
+ "A Sphero robot from Orbotix (",
+ ButtonBox["http://www.gosphero.com/",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www.gosphero.com/"], None},
+  ButtonNote->"http://www.gosphero.com/"],
+ ")"
+}], "Item",
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+  3.585328094934423*^9, 3.5853281882442837`*^9}, {3.585336150918618*^9, 
+  3.585336174160266*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Before you begin", "Section",
+ CellChangeTimes->{{3.585327802875699*^9, 3.5853278107376423`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Fully charge Sphero, remove him from his dock and shake him to activate him. \
+Every few seconds he will flash blue, then white, then red.\
+\>", "Item",
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+  3.585328094934423*^9, 3.585328227420912*^9}, {3.5853284720774603`*^9, 
+  3.5853284849077787`*^9}, {3.585328939009602*^9, 3.585328969585137*^9}, {
+  3.585401448261381*^9, 3.585401482626086*^9}}],
+
+Cell["\<\
+Pair with Sphero from your computer. (You may need to turn off bluetooth in \
+your smartphone or tablet device so that it doesn\[CloseCurlyQuote]t \
+interfere.)\
+\>", "Item",
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+  3.585328094934423*^9, 3.585328304234762*^9}, {3.5853289414177017`*^9, 
+  3.585328941889646*^9}, {3.585329005024138*^9, 3.5853290105040913`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Mac OS X", "Subitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+   3.585328094934423*^9, 3.5853283955346117`*^9}, {3.585328494395494*^9, 
+   3.585328591204342*^9}, {3.585329128448204*^9, 3.585329128582831*^9}, 
+   3.585332395825417*^9}],
+
+Cell["\<\
+Open System Preferences > Bluetooth\
+\>", "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+   3.585328094934423*^9, 3.5853283955346117`*^9}, {3.585328494395494*^9, 
+   3.585328604555276*^9}, 3.5853323958257*^9}],
+
+Cell["\<\
+Click Set Up New Device (if you have devices set up already, click \
+\[OpenCurlyQuote]+\[OpenCurlyQuote])\
+\>", "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+   3.585328094934423*^9, 3.5853283955346117`*^9}, {3.585328494395494*^9, 
+   3.5853286377715683`*^9}, 3.5853323958259563`*^9}],
+
+Cell["\<\
+Select Sphero-BWR (or similar) from the list of discovered devices, then \
+click Continue\
+\>", "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+   3.585328094934423*^9, 3.5853283955346117`*^9}, {3.585328494395494*^9, 
+   3.585328657722898*^9}, {3.585328716253108*^9, 3.585328730354527*^9}, 
+   3.585332395826212*^9}],
+
+Cell["\<\
+Wait for Bluetooth Setup Assistant to pair with your device, then Click Quit\
+\>", "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+   3.585328094934423*^9, 3.5853283955346117`*^9}, {3.585328494395494*^9, 
+   3.5853286778670464`*^9}, {3.5853287506265182`*^9, 3.585328765002119*^9}, 
+   3.585332395826468*^9}],
+
+Cell["\<\
+You should see Sphero-BWR in your list of devices, with a red marker which \
+says \[OpenCurlyDoubleQuote]not connected.\[CloseCurlyDoubleQuote] This is \
+expected behavior. It will turn green upon successful execution of the \
+command \[OpenCurlyDoubleQuote]ConnectSphero\[CloseCurlyDoubleQuote] below.\
+\>", "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+   3.585328094934423*^9, 3.5853283955346117`*^9}, {3.585328494395494*^9, 
+   3.5853286577189617`*^9}, {3.585328767018764*^9, 3.585328855455715*^9}, 
+   3.585332395826722*^9, {3.585401501004128*^9, 3.585401544938463*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Windows", "Subitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15201.},
+ CellChangeTimes->{{3.58532911885907*^9, 3.5853291313695993`*^9}, 
+   3.585332386781481*^9}],
+
+Cell["\<\
+Use the Add a device wizard and follow instructions.\
+\>", "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15201.},
+ CellChangeTimes->{{3.58532911885907*^9, 3.5853291554701653`*^9}, 
+   3.5853323867816877`*^9}]
+}, Closed]],
+
+Cell["\<\
+Find the name of the virtual serial port through which sphero is connected.\
+\>", "Item",
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+  3.585328094934423*^9, 3.585328304234762*^9}, {3.585328881058622*^9, 
+  3.585328907104244*^9}, {3.58532901797587*^9, 3.585329028223634*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Mac OS X", "Subitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853279422376537`*^9, 3.585328034978396*^9}, {
+   3.585328094934423*^9, 3.5853283955346117`*^9}, {3.585328494395494*^9, 
+   3.585328591204342*^9}, 3.585331996224442*^9, {3.585332410133608*^9, 
+   3.5853324102598267`*^9}}],
+
+Cell["\<\
+Execute this code following and pick the correct device from the list\
+\>", "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.585332309709395*^9, 3.585332367482677*^9}}],
+
+Cell[BoxData[
+ RowBox[{"spheroDevices", " ", "=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"FileNames", "[", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"$RootDirectory", ",", "\"\<dev\>\"", ",", "\"\<tty.*\>\""}], 
+       "}"}], "]"}], "]"}], ",", 
+    RowBox[{"_", "?", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", 
+         RowBox[{"StringPosition", "[", 
+          RowBox[{"#", ",", "\"\<Sphero\>\""}], "]"}], "]"}], "\[NotEqual]", 
+        "0"}], "&"}], ")"}]}]}], "]"}]}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.5853294304819*^9, 3.5853294875450478`*^9}, {
+   3.585329543664585*^9, 3.5853296760284777`*^9}, {3.585329848125176*^9, 
+   3.585329941228723*^9}, {3.585330078634787*^9, 3.585330081080928*^9}, {
+   3.585330167583068*^9, 3.585330172864146*^9}, {3.5853303664940147`*^9, 
+   3.5853303940600233`*^9}, {3.585330663804201*^9, 3.585330725693989*^9}, {
+   3.585331147993388*^9, 3.5853311636483593`*^9}, {3.58533153172943*^9, 
+   3.5853315732064743`*^9}, {3.5853316924134617`*^9, 3.58533176853866*^9}, {
+   3.585331996224621*^9, 3.585332021714984*^9}, 3.585332332260941*^9, 
+   3.58533236748287*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", "\<\"/dev/tty.Sphero-BWR-RN-SPP\"\>", "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.},
+ CellChangeTimes->{{3.585331546509357*^9, 3.585331573830988*^9}, {
+   3.585331694494759*^9, 3.5853317312366247`*^9}, 3.585331769088923*^9, {
+   3.585331983279477*^9, 3.585332023344983*^9}, 3.585332332261084*^9, 
+   3.585332367482976*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Windows", "Subitem",
+ CellChangeTimes->{{3.585332218155965*^9, 3.585332231486703*^9}, 
+   3.585332413707652*^9}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Open Control Panel by clicking the Start button, and then clicking Control \
+Panel.\
+\>", "Subsubitem",
+ CellChangeTimes->{{3.585332218155965*^9, 3.5853322622382708`*^9}}],
+
+Cell["\<\
+In the Control Panel search box, type Bluetooth, and then click Change \
+Bluetooth settings.\
+\>", "Subsubitem",
+ CellChangeTimes->{{3.585332218155965*^9, 3.585332271710678*^9}}],
+
+Cell["\<\
+In the Bluetooth Settings dialog box, click the COM Ports tab and \
+\>", "Subsubitem",
+ CellChangeTimes->{{3.585332218155965*^9, 3.5853322912419987`*^9}}]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Loading and Initialization", "Section",
+ CellChangeTimes->{{3.58533287490346*^9, 3.5853328806813507`*^9}, {
+  3.585336340808098*^9, 3.58533634763162*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Load the Sphero library", "Subsection",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.58533291567484*^9, 3.58533292418464*^9}, 
+   3.5853362145945463`*^9, 3.585394107331243*^9}],
+
+Cell[TextData[{
+ "Loads the ",
+ StyleBox["SpheroConnector`", "Input"],
+ " package. Sometimes mathlink errors occur if you try to load the library \
+multiple times. If you see mathlink errors, you may need to restart the \
+kernel to clear symbols and unload packages.."
+}], "Item",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.5854750337967367`*^9, 3.5854751641814623`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Caution", ":", " ", 
+    RowBox[{"restarts", " ", "the", " ", 
+     RowBox[{"kernel", ".", " ", "All"}], " ", "symbols", " ", "will", " ", 
+     "be", " ", 
+     RowBox[{"cleared", "."}]}]}], " ", "*)"}]}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.585333160558145*^9, 3.585333161724668*^9}, 
+   3.5853362145946827`*^9, {3.5854749250725*^9, 3.585474997908863*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Get", "[", 
+  RowBox[{"\"\<SpheroConnector`SpheroConnector`\>\"", ",", 
+   RowBox[{"Path", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"NotebookDirectory", "[", "]"}], "}"}]}]}], "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ InitializationCell->True,
+ CellChangeTimes->{{3.5853326877010603`*^9, 3.585332708813896*^9}, {
+   3.585332744413509*^9, 3.585332746340521*^9}, {3.585332830077985*^9, 
+   3.5853328348601418`*^9}, 3.585336214594769*^9, {3.585390778516914*^9, 
+   3.5853907811384487`*^9}}]
+}, Closed]],
+
+Cell["Connect to Sphero", "Subsection",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.585336241492112*^9, 3.585336261378992*^9}}],
+
+Cell["\<\
+This opens a connection to Sphero and saves a handle. Sphero will turn light \
+blue.\
+\>", "Item",
+ CellChangeTimes->{{3.585394517473907*^9, 3.58539460185081*^9}, {
+  3.585400989911365*^9, 3.585401000300931*^9}, {3.585401096946357*^9, 
+  3.585401100484771*^9}, {3.585402023625415*^9, 3.585402142032981*^9}}],
+
+Cell[BoxData[
+ RowBox[{"mySphero", " ", "=", 
+  RowBox[{
+  "SpheroDeviceConnect", "[", "\"\</dev/tty.Sphero-BWR-RN-SPP\>\"", 
+   "]"}]}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.581069333008915*^9, 3.581069380108245*^9}, {
+   3.5810792917980127`*^9, 3.581079293076558*^9}, {3.5811657764505863`*^9, 
+   3.5811657766965*^9}, 3.581179142593004*^9, {3.581182439459972*^9, 
+   3.581182442257118*^9}, {3.581242745128069*^9, 3.581242745574465*^9}, 
+   3.581242796266086*^9, {3.5812428343952637`*^9, 3.581242834537714*^9}, 
+   3.585336261379134*^9, {3.585401562638385*^9, 3.585401568146965*^9}}],
+
+Cell[BoxData[
+ InterpretationBox["\<\"SerialPort[</dev/tty.Sphero-BWR-RN-SPP>]\"\>",
+  StringForm["SerialPort[<`1`>]", "/dev/tty.Sphero-BWR-RN-SPP"],
+  Editable->False]], "Output",
+ CellChangeTimes->{
+  3.585398675966381*^9, 3.585398756581201*^9, 3.5854007149434958`*^9, 
+   3.585400828291304*^9, 3.585401720816195*^9, {3.5854017698056107`*^9, 
+   3.585401781194964*^9}, 3.585401961954932*^9, 3.585402017368815*^9, 
+   3.585412546193775*^9, 3.5854152424805117`*^9, 3.5854156047838182`*^9, 
+   3.5854157648536654`*^9, 3.5854169224019537`*^9, 3.585417602511764*^9, 
+   3.585417666884057*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Controlling Sphero", "Section",
+ CellChangeTimes->{{3.5853362894589033`*^9, 3.5853363066093597`*^9}, {
+  3.5853363513038063`*^9, 3.5853363579917097`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Make sure the motors are on", "Subsection",
+ CellChangeTimes->{{3.585339446103182*^9, 3.5853394607839727`*^9}, {
+  3.585393937978722*^9, 3.585393942719634*^9}}],
+
+Cell["\<\
+Sphero\[CloseCurlyQuote]s stabilization is on by default; however, if it\
+\[CloseCurlyQuote]s been turned off, it needs to be enabled before attempting \
+to send movement commands.\
+\>", "Item",
+ CellChangeTimes->{{3.5853394673290443`*^9, 3.585339537761606*^9}, {
+  3.585393950447541*^9, 3.5853940604925013`*^9}, {3.585401030949872*^9, 
+  3.585401082570284*^9}}],
+
+Cell[BoxData[
+ RowBox[{"SetStabilization", "[", 
+  RowBox[{"mySphero", ",", "True"}], "]"}]], "Input",
+ CellChangeTimes->{{3.581083853923726*^9, 3.581083901774152*^9}, {
+   3.581084047114674*^9, 3.581084061559409*^9}, {3.58108418835236*^9, 
+   3.581084197427833*^9}, {3.5810957394436626`*^9, 3.581095860446939*^9}, 
+   3.581095893957938*^9, {3.581096094969943*^9, 3.581096096024544*^9}, {
+   3.581096127857337*^9, 3.581096130247869*^9}, 3.581096207199128*^9, 
+   3.581096973618215*^9, 3.5811541698895397`*^9, {3.581154504889019*^9, 
+   3.581154504974772*^9}, 3.581154602752149*^9, {3.581167683650935*^9, 
+   3.581167692599346*^9}, {3.581167748081448*^9, 3.58116775188105*^9}, {
+   3.5811677909595823`*^9, 3.581167812759129*^9}, {3.5811678633500557`*^9, 
+   3.581167891107526*^9}, {3.581169465448785*^9, 3.581169468223073*^9}, {
+   3.5811770852545137`*^9, 3.5811770861435337`*^9}, {3.581183810012042*^9, 
+   3.5811838104874372`*^9}, {3.581183871591926*^9, 3.58118387218408*^9}, {
+   3.581244977534206*^9, 3.581244981307516*^9}, {3.581245973816897*^9, 
+   3.581245977395626*^9}, {3.585393878459694*^9, 3.585393879004468*^9}}],
+
+Cell["\<\
+Change Sphero\[CloseCurlyQuote]s color, speed and heading\
+\>", "Subsection",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.585336241492112*^9, 3.585336261378992*^9}, {
+  3.5853940860532*^9, 3.5853941031071577`*^9}}],
+
+Cell["\<\
+To calibrate, move the vector below until Sphero moves directly away from \
+you, then press the \
+\[OpenCurlyDoubleQuote]Recalibrate\[CloseCurlyDoubleQuote] button.\
+\>", "Item",
+ CellChangeTimes->{{3.5853394673290443`*^9, 3.585339537761606*^9}, {
+  3.585393950447541*^9, 3.5853940604925013`*^9}, {3.585394280847765*^9, 
+  3.585394479345084*^9}, {3.585401121059567*^9, 3.58540113188111*^9}, {
+  3.5854011631999273`*^9, 3.585401165501258*^9}}],
+
+Cell[BoxData[
+ RowBox[{"DisplayControls", "[", "mySphero", "]"}]], "Input",
+ CellChangeTimes->{{3.581083210906118*^9, 3.581083214674511*^9}, {
+   3.581083351935779*^9, 3.581083352971178*^9}, 3.581090915498023*^9, 
+   3.58118221265858*^9, 3.5811822676090727`*^9, 3.5811827294101877`*^9, 
+   3.581182839310842*^9, 3.5811836699919786`*^9, 3.581183702422611*^9, 
+   3.581253775645178*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Streaming data from Sphero", "Section",
+ CellChangeTimes->{{3.5853362894589033`*^9, 3.585336327448381*^9}, {
+  3.585336360808667*^9, 3.585336360983348*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Deactivate Sphero\[CloseCurlyQuote]s motors", "Subsection",
+ CellChangeTimes->{{3.585339446103182*^9, 3.5853394607839727`*^9}, {
+  3.58540125291325*^9, 3.5854012564541807`*^9}}],
+
+Cell["\<\
+This step is optional, but may help reduce noise if collecting accelerometer \
+data. \
+\>", "Item",
+ CellChangeTimes->{{3.5853394673290443`*^9, 3.585339537761606*^9}, {
+  3.585401212602069*^9, 3.585401230240889*^9}}],
+
+Cell[BoxData[
+ RowBox[{"SetStabilization", "[", 
+  RowBox[{"mySphero", ",", "False"}], "]"}]], "Input",
+ CellChangeTimes->{{3.581083853923726*^9, 3.581083901774152*^9}, {
+   3.581084047114674*^9, 3.581084061559409*^9}, {3.58108418835236*^9, 
+   3.581084197427833*^9}, {3.5810957394436626`*^9, 3.581095860446939*^9}, 
+   3.581095893957938*^9, {3.581096094969943*^9, 3.581096096024544*^9}, {
+   3.581096127857337*^9, 3.581096130247869*^9}, 3.581096207199128*^9, 
+   3.581096973618215*^9, 3.5811541698895397`*^9, {3.581154504889019*^9, 
+   3.581154504974772*^9}, 3.581154602752149*^9, {3.581167683650935*^9, 
+   3.581167692599346*^9}, {3.581167748081448*^9, 3.58116775188105*^9}, {
+   3.5811677909595823`*^9, 3.581167812759129*^9}, {3.5811678633500557`*^9, 
+   3.581167891107526*^9}, {3.581169465448785*^9, 3.581169468223073*^9}, {
+   3.5811770852545137`*^9, 3.5811770861435337`*^9}, {3.581183810012042*^9, 
+   3.5811838104874372`*^9}, {3.581183871591926*^9, 3.58118387218408*^9}, {
+   3.581244977534206*^9, 3.581244981307516*^9}, {3.581245973816897*^9, 
+   3.581245977395626*^9}, {3.585393878459694*^9, 3.585393879004468*^9}, {
+   3.585394263351898*^9, 3.5853942641154213`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Send a command to Sphero see sensor data\
+\>", "Subsection",
+ CellChangeTimes->{{3.585339549323406*^9, 3.585339564516432*^9}, {
+  3.5853941148830442`*^9, 3.585394124146267*^9}, {3.5854123936923103`*^9, 
+  3.585412402476088*^9}}],
+
+Cell[TextData[{
+ "See the usage messages from functions such as ",
+ StyleBox["GetAccelerometerAxisXRaw[]", "Input"],
+ " for more detailed information on the data displayed here."
+}], "Item",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.585339578861142*^9, 3.5853396241802607`*^9}, {
+   3.58540126847171*^9, 3.585401272437517*^9}, {3.585412362573587*^9, 
+   3.585412490881974*^9}, 3.585412697097843*^9}],
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", " ", 
+  RowBox[{"SpheroDeviceData", "[", "mySphero", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.581154607724371*^9, 3.5811546087556753`*^9}, {
+   3.581154705347678*^9, 3.581154713953697*^9}, {3.5811577142155046`*^9, 
+   3.581157717133512*^9}, {3.5811578281559772`*^9, 3.581157829066128*^9}, {
+   3.581158090475876*^9, 3.581158107425955*^9}, 3.581181831084997*^9, 
+   3.581183834443804*^9, {3.5811847186685457`*^9, 3.581184729672002*^9}, {
+   3.58118478880328*^9, 3.5811848008197203`*^9}, 3.581184833321519*^9, {
+   3.581244876664955*^9, 3.581244881278661*^9}, 3.581245049370883*^9, {
+   3.581245986649457*^9, 3.581245988623001*^9}, {3.581248395822061*^9, 
+   3.5812484054172573`*^9}, 3.581249418467206*^9, {3.585412344336447*^9, 
+   3.585412376521476*^9}, {3.585412556553739*^9, 3.5854125624728003`*^9}, {
+   3.585412620958887*^9, 3.585412630199161*^9}, {3.5854128153316803`*^9, 
+   3.585412819988948*^9}, {3.585412884550621*^9, 3.585412893691934*^9}, 
+   3.585412941494206*^9, {3.585413231591222*^9, 3.585413246670779*^9}, {
+   3.5854133598123703`*^9, 3.585413367210644*^9}, {3.5854137610739393`*^9, 
+   3.585413790506426*^9}, {3.5854138572864733`*^9, 3.58541390376723*^9}, {
+   3.585413956532289*^9, 3.585414244195161*^9}, {3.5854142912989283`*^9, 
+   3.585414323905182*^9}, {3.5854144117023287`*^9, 3.5854144133022738`*^9}, 
+   3.585414453695335*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Visualizing Data from Sphero", "Section",
+ CellChangeTimes->{{3.5853396356556063`*^9, 3.585339638374496*^9}, {
+  3.585339672319309*^9, 3.585339676473728*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Plot data from the accelerometer, the IMU gyroscope or any of Sphero\
+\[CloseCurlyQuote]s many sensors. Data must be streaming.\
+\>", "Item",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.5853394673290443`*^9, 3.585339537761606*^9}, {
+   3.585393481941379*^9, 3.585393563977661*^9}, {3.585394180833255*^9, 
+   3.585394186776791*^9}, 3.5854171493035097`*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Head", "@", "task"}], "===", "ScheduledTaskObject"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"RemoveScheduledTask", "[", "task", "]"}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dataBuffer", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "100", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"task", " ", "=", 
+   RowBox[{"RunScheduledTask", "[", 
+    RowBox[{
+     RowBox[{"dataBuffer", " ", "=", " ", 
+      RowBox[{"Join", "[", 
+       RowBox[{
+        RowBox[{"Sequence", "[", 
+         RowBox[{"Drop", "[", 
+          RowBox[{"dataBuffer", ",", "1"}], "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"SpheroDeviceData", "[", "mySphero", "]"}], "}"}]}], "]"}]}],
+      ",", ".1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\"\<IMUPitchAngleFiltered\>\"", "/.", "dataBuffer"}], "/.", 
+      RowBox[{"\"\<IMUPitchAngleFiltered\>\"", "\[Rule]", "0"}]}], ",", 
+     RowBox[{
+      RowBox[{"\"\<IMURollAngleFiltered\>\"", "/.", "dataBuffer"}], "/.", 
+      RowBox[{"\"\<IMURollAngleFiltered\>\"", "\[Rule]", "0"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\"\<IMUYawAngleFiltered\>\"", "/.", "dataBuffer"}], "/.", 
+      RowBox[{"\"\<IMUYawAngleFiltered\>\"", "\[Rule]", "0"}]}]}], "}"}], 
+   "]"}], "]"}]}], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.585415278047495*^9, 3.585415582142721*^9}, {
+  3.585415618104766*^9, 3.58541564403881*^9}, {3.585415681286768*^9, 
+  3.5854156821392508`*^9}, {3.585415714151024*^9, 3.585415737540196*^9}, {
+  3.585415777932823*^9, 3.5854157822427483`*^9}, {3.585415823115004*^9, 
+  3.585415841626277*^9}, {3.58541589240849*^9, 3.585415978541774*^9}, {
+  3.5854160218605957`*^9, 3.585416264110734*^9}, {3.5854162976704617`*^9, 
+  3.585416402426803*^9}, {3.585416500289063*^9, 3.585416504856694*^9}, {
+  3.585416546263838*^9, 3.585416627081287*^9}, {3.585416713136511*^9, 
+  3.5854167852159357`*^9}, {3.585416824746551*^9, 3.5854168253645144`*^9}, {
+  3.585416941437518*^9, 3.585417038641981*^9}, {3.5854170968908653`*^9, 
+  3.585417149303686*^9}, {3.5854174774635363`*^9, 3.5854175470858507`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   ListPlot[{
+     ReplaceAll[
+      ReplaceAll["IMUPitchAngleFiltered", $CellContext`dataBuffer], 
+      "IMUPitchAngleFiltered" -> 0], 
+     ReplaceAll[
+      ReplaceAll["IMURollAngleFiltered", $CellContext`dataBuffer], 
+      "IMURollAngleFiltered" -> 0], 
+     ReplaceAll[
+      ReplaceAll["IMUYawAngleFiltered", $CellContext`dataBuffer], 
+      "IMUYawAngleFiltered" -> 0]}], StandardForm],
+  ImageSizeCache->{360., {106., 111.}}]], "Output",
+ CellChangeTimes->{{3.5854156589228163`*^9, 3.5854156833450823`*^9}, {
+   3.585415783247322*^9, 3.585415806966936*^9}, 3.585415842686595*^9, {
+   3.585415896024365*^9, 3.585415912919042*^9}, {3.58541595254331*^9, 
+   3.5854159796648197`*^9}, {3.585416011126696*^9, 3.585416053390895*^9}, {
+   3.585416098575522*^9, 3.5854161176411867`*^9}, {3.585416163675187*^9, 
+   3.585416265009699*^9}, {3.5854163072981367`*^9, 3.585416325485506*^9}, {
+   3.585416362039666*^9, 3.585416367619172*^9}, 3.585416403169141*^9, 
+   3.585416505377553*^9, 3.585416554813889*^9, 3.5854166284236383`*^9, 
+   3.585416684556068*^9, 3.585416728697445*^9, {3.585416763169814*^9, 
+   3.585416785759757*^9}, 3.585416826108109*^9, {3.5854170423824244`*^9, 
+   3.5854170676223993`*^9}, {3.585417112668435*^9, 3.5854171298140574`*^9}, {
+   3.5854174944889812`*^9, 3.585417502991826*^9}, 3.5854175369023647`*^9, {
+   3.585417613027884*^9, 3.5854176366761436`*^9}, 
+   3.5854176789680977`*^9},ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJzNXGtsHNUVntiJH0kdQglJmkBeTUgg0aYkQHjEdRbT8BB0Q6ENVKvKUcAk
+aUmXkIhuKVRdNU1XQcBSImwg2hZkVCmtiiUkt6qsipUqGbVGwio1FEu4SEbV
+Vlqk7Y/94R+nd+7cOz4z8907YzsRrOSd8Z1zz/nO494597X3HDxx+OFHD544
+cujg+tuPH8wdPnLo8fX7fnhcFDUvcJwFhx3H+XC9496TuFVf8nPE/XKcy+Sl
+mfxy8Z/8vu/iPe+S3y30TqWfzj2/T175vftZaq5+C6juftz7/jOdTe6NqCJu
+ZZGPqCOepWKh62kRTe6NqMKkJWTZzFE6raBMUi8x8/mGKmPQEtexypmpchFd
+/UV/fq38jsZSnONXhg2pGfWf6ZZucq/uR/3f5N6ooFSPoowM2I4fOUovnk7L
+q/tR/ze5N6IKe5SY5cv979Ad+87Jq/tR/ze5N6IKe+R8SbGJxFKbWcwdqiwS
+s5Y6KVXGoDkr5yBb83F5dHX2u1fv4Uavjm6DjXqd6tNenSZVRjRNtWpNfJOz
+MCFGzrtFXhbTYK/b0/ZSsZCn4uC4V7s+Srl0L5UHipTJnaeGGzhmEVzlxSax
+lwfFNuo1l638DPZmaGDifzQkoPQOTcmySj5F+aEpm1juMS02YkklVpiyMTFE
+ud4c5fN59ZejXHGI6r5RW2msmKF85V9USKVpuObJGyulyCmMSJPTIpfX9oR6
+X2qyxQIFSrBs1Ghqasr9EyDc7yU0Va1pXak2PkgpofvAe2+La5pG66q8UqC0
+BmV4ZfGGw+5bwWNmtpMAdDdQ+NaQP8fPU9p7aVO2b8SFSEXXilVtxbRrRYR3
+m9F0LRwYv28Fj1n1zRpv/1t0bt8T7tW5B0SI1otHUkgvtyn0Zgo0Vq2T1wIb
+NJBx49RTzIvZSZteXKLWy+ob1LG0cmUkf66cjj73//7Ox9yrc6eqZ+g/Je8u
+RfOH0knqP90lr+6H/a8N4kFrp7FyL6nsjMpjddVX5GjgvNdX1FXvlMTLm4ye
+b+WqSAZcNQ/LooBJ1L1oRa5Bmrmp/Bwj6vtWqaZ8053uishRqrcrcW6X22hM
+K40aVKvVZanplcLVagUQdDAYPIs00ZblKFHZPgBBaxx2Ng8kpbE5UTP2Gyh0
+V6lGxH0ZDkcmXSuCmi1neyoepKFjWAUk6L6Ee+F4+hf0Yudx93rAGDvB/rAr
+DlRQhzXAaboV96dPyjJxdQ6Auqjb4uKl9ENA1cWgbDMQoN8BCfXbogIr4lpW
+fS1giUJmOSjbbI+87wOt7oxHy0PE/XBrarS8DLXg5aBMozWE4ENAQZ2/Rbvv
+z8XeC0HZ2oR0PcAimo47aC+o22JW+YTR0MGyHoNpUPPh9RKIjkZksOwhwBY1
+uJ0JIFrgPA1YFgCcxSoMed/LgmGHEa1VKo/QLiAV9Yyog2UNa4cRfGL9UaKN
+si/UcS4GiPcw8VL6g0DADUAASnKQSWIbd5AcOesGIOoYsM3dZlGblGN4JMY4
+phuUfReULQTRx55b9NegePfJbOGn9sw8KLVfA0DtAXQaKA9O9jwWaFDCVkuA
+cboloGwnKFsDEO8BdKhnXwosdaNZnQwgR6PqJaBsf8Kw1+2Um8cCKZvQcteD
+svstVuLiLwUwLZD06423MPQK1YGA3le87nZAh2ZeLa1YQ+JdM8pLtgKYm0Hd
+7YDuO/O3yH5AxxN5yVW3qcgk2nYzAF2He/UNW0AyAAuBvOvjRXHyAmC7BpTp
+wQ2KiLiBwUKgogWmp32oX59hhyQ0AyQov0KazdKIGl2gg59htxQgQWkUetXe
+Bcosyx4/BuQolbjcQseNcwqUWcRvAGx1GdcUpd5IPEqzUQ+OfIi61btBGco6
+kP8tCewGAOlKWdZK0/Ua1fS0MAUnY9aCeshbHpxFrO5Jf6K8LWGD+7IqE4Co
+VpeA/Il3htG5WdOxyXiPbqEs6977K/q6h3W3rj7tTSBNN6YVaZskLf306/SS
+aNuvnLlVKe+zbJpdDK2QZaIdVSuUUTN13l+OJgS7sXKOeotlKmYzNDDuacJi
+AYXbCg20MUKZdIn+4pJ399ADW+7giwTrQGShSR3Pbe1UGy1TJlukckkg6huR
+E6whdCriOgIJ2rTQLJvKUvn8AOWyORpxJ8zVmkXPoR/QinVH6ayAvVtZYnyo
+KC1QPD9CcgJd0962g752yzV09sgDaM1jAbO7NLu3TrqY6mNlyhaGJN76xDAN
+vf1baV25dFEfppR4K4h7T7zbtBo0NTFB4+Pib3SA0oJ0ZLKK1jscbUIejSt8
+PhOUdVI07OlARSdNlX8OItGqA+6gl4Vq7mSfex0tpql30JM30ZehTPkfEIPu
+DLjLrtZB5cpNZWik4YWoru/S/mjD5dRzrIx4clOGQniPCobJwTzlBiZkobu8
+kcpXPIrGqLBYikbqBIPpWm2d6TG5ApEtFKiQy0oZvaXf01NgLQcFqrby9OR5
+clIlL1CE5/pSDp1+9UmIR1vZbbT9qvFWh/OStlEbFd5yqDCC15O0lbmnZ6xc
+o1I6QxUJogrqDyGeFit3yu82Gs5nqG+0Rr/51nq64qoeNXU+QN/u2Ez9pbfQ
+XDJ6/a1WLaE6XKKSRDkmO4ZGfQStU93IbSvy+pFqg6qjfeI+TQOnUpQqjiqg
+VRldFYOvdyh7B5fAp2kwl5LapooV0T9DCDFRzeyN6v/kHOJpsffNWuNGg/wV
+g7GSGGedpxd276U1V94vUZy7rYe2iIT5ye4noMae8Y2ziSuVH6QR8nmqTIie
+UfihhpffNgJXXua3n3EZr04mT0XRhgbHqsIURRHLw5G4R2GyU9myMTEgLJGi
+UrlE2WyJJqchFHnPcOzyXVFnoY+q/hmxs7gC5bbX+QE5SIWyF3yTQznZ8P/0
+c3EVFH90m8YzT8n7QT+rN05De2sL7cKOE1RICzum+6iGVwsd7Ye49K1DuXdy
+0IVWJL0w3Jgoy15fcq16b4DJmUX66HSjeAeWM5Tu89b3xwppylc+RdDkPYPl
+Vb9EBlhtapR6nYwbAYTXQT+E2ibwDcxPWT65gsV5pZT1c5pSxXvNyKyhNECl
+3qzIGurrgMu/IsvaPNulSp4to4uXqImg+fmlit3EUInSIm8YGB6TrwyN5Pg3
+d1NvvhvtyrlOh3p1RKQveSG9j7Ki1clcLIoo3FI6gH02+m5q0PhwWTRU7SYD
+S7BqG3BTu+8m2zy1nzuzgam/EUYE4cu3PUaVl2aSQHfXh97I0sbodLBe5weF
+XF2V/10D6C6RZa2S7q3Tr9FZlRi6/M8+K7E4aG/dSsBrjS9TRHiN5/BBHHpM
+wHX1hsiLQu8jb2W4GfAIZPKLfBNHo9++uKPViMYjHtXzumgE56UxLYFkkclE
+MYwgbFWNlEO3RA9C509IRSZQI0aLmydFw9ylKrbBxoHwsgSc39czjSzfg7kk
+mvP18HQE3uT8PhQIcDoxOjnr7XlzbxzZK1r62g5QtvQC0LmKu+Uzigd3Zih4
+zjIj3xmnojmJOBwtwFF6Wt+lA9P6SVl3MDb6wyDqfSjhIDdpi9j1H3mFznY+
+7l4RKuQMm5Etuw09O7VZm6cVeLy9UJnePRPe0JM0JHgPwy2k2wEKQ7QewkMC
+LEnNJyQYxIvIxhYKyLixoWDcXrcLVNGuis78tpi606+GPBndddNq2hgve2Ct
+MHrNRXt1ZJhm3rz8ZQle94qEqm5VusypzRn3+6HVp3UWRHBRgJVdBeq2Kwiz
+OC/QDgyAYGkjSwMLCOLqoNjRluHN8WqjtaAhVwNDMo12gkhkIYe20l0LbI8W
+WvSeMQ5ez5Hy6LpTlfHX0M54hQLLIDNQdPbBvbsHIF4FpB4FiGORBMlvAhFw
+wB7Lr5ol6M20prTL/TBOTwI90WIU2rqhB+kGUatAFbQVaRlTplk1chBX/lW4
+qEn6qCXQDTO0x4AUf9suWpCO2d+C6mrl+duA3a8CVbTy3K5cefHKBS/iyP/v
+BHbfLkKeddCJDTQ3Y91IhXYTgEWiixwSbHhs6HFYNrzYlNaHQwS1b7RE7CvJ
+RL1pbn3ea3RZAKlhDivcEjmU5cCMTGHUxeqehQfcDgAexTw6XFKIUzJ+URv1
+8FozQ4A3KWbska8Z2qXFIXiwopv3OQ06z4ImAzcCmWi92NLVdwBy1LTm4Ou7
+jayD/X7YyOwZarxosgtlPto43IgblPEjIhmvlNlYZ0FYsL3zSCLKMM1ui4YF
+O5EHG8XqeLSG6QyEAs2Q6F0y7CAf7GgtSFD6jE4VtQI6NCe0F4hH+xBNbc1k
+wGY+2uXMNVj+AmoFdPuAAvcBurUXx1ZdyuOB/nrm+QFQBXUraLuZZdfKZYAF
+OlaxH6Bj9/eox/zlw2yG1gAQeJ2ncnOjbX4JFOIsVoGy/QAxu0ce8iK3PTDI
+NXgLTqWjjg5l5p+PC1GTQG/3pUCzDQAx8i9Kf7aZNXvWwgIZDM4sMEh60yLq
+CTi/DWZIZwD5ViAesT0ItEfQLeLRseQuUIaSFw8m6FBZvcdmZw1/2SBydCk+
+S9wO6B4BqvD4kNKT2uB7Kt55c2UAtgFMNwBMKAlYbjbJMLD8NlC2S6Pjw5hw
+eo62AdvjgoF8HZQhpXcBUYifeUXbHhuMLUqCngFle0AZavjNKqQjq2sRX6E8
+PrElUcakj0nEtToUrRsBnV5t4/EQHsoxehSVFq2Q37UGcQ11pYpUPuPIDL4O
+VNHK8FybTa6FfbTJDPyXwHxomlWvefLGzsx3F2htDNxWM4AsENYJLHejKuOd
+uz7JEjWN/UXORO0DojoBHTqz0RMvKm6qaicQ9bwq429RLkpKQrqgZvRXgPt6
+UNditi0A9whgoU/qhWfOuWhLJK4GYt4HTYM936EkhldFuOUSSOT20hI5S/Zc
+9+VcJ+TXZfFSYUbKyt4FZfpMerg/5hpYRPvDJ3BoCb2JONvnQF00A3FQQQz3
+rfw3EhTE+fxeiz8QBUfHOGz0Un0O1EVHmLUqEWszGqXKBfh5GLNz7GP0HlBv
+ByhDznoYlIU0mscvz+hRC/eHf/yK2fBvnsR2pWyyX5VZBxyLTHHYSKcWItvi
+fjUGqfYZUO0mIH1TyJhz/9kXLTE6nDdmDuafR7kQv9civ7crBIa0AP0IgEIw
+3x9Ikd/ozK1F69n+Mon8tvzEGJpt/QT4yUu37WfYLTOE/mQ9azOoO9Y5Cg9K
+LdqydSqJaC4GdZ/ouOJstZaSy0CgZbHmI+DsE/HkXPsOwOIhM4ufAYDoV0c6
+gKgEbNFoPSEy1PuhTv/deBYcxWezk2ghl9+8OcnHrwEmaHLJsmCuWXDYaBoN
+nYbfD8osMzJJ0Zp3Zsb/OI1F/EdAFDq0iI6TW9j+ByB7ZBaODD1/E0j3RsjG
+2dFj8dy4iTxuwaViy8IsmvG1jN7M+O27dcGbj4OODOL0dqfADNrM/YfAK7PU
+REvgGUJ4fHZ7fHUDwF8DMK+buf0O2MRC/gbgjha8ngFllqm8Q4B8L0D2AihL
+wJaT7wWiXpg/WtS4T4Eyy0La04Ac/RrHKVDG2UquTwMitAX7AmB8z0wuvy2d
+UvQ522rJRMgC72SFMfBXYjbcAHpbDmf9d8XV0BoDXNsRuAhY9MI+acd+byLV
+/OPbkfPX6Ph2/Hi9GQBF6YMGbzDRMY7OfFKZDbWTDr9Rz/KB3VQhMKazvu7H
+GyX/O+nImcfqDPs5HXKdGTHL0nstTJOf5EyOeU6nE+PYe3MUNI9DdoklzPl8
+WJwE/SKPnncKlqHGxPlcmK4w+FzviOVtAY0E32csJAddkbdyNHp9f/6yj4Ey
+y+DovwBFAvKE3Odr8CeAuA/iybkyCchN3GeoLRAfBUw+iSfnEBOQJ+QeB/YE
+YPdRPDkHayHPye/oskNCaTkg7eOwOzQR5/mxmWecQb7oz6eAukfjybkJObmk
+niXPz9sEs3luy87mspqix//cVI9wUdFUax4rHVpadK7LkEvRrFYhZLLzaZxG
+Lqmf+yijJFh7SOAUzterM6clhijrcD5F81lP4OyN+RTNe4FAS1ikSgP5lNIr
+2SKArP6gYrfg/+H+P8o=\
+\>"]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Using Sphero as a controller for 3D Graphics\
+\>", "Section",
+ CellChangeTimes->{{3.585339651822089*^9, 3.585339663172814*^9}, {
+  3.5853934340170116`*^9, 3.58539344049333*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Once data is streaming, this code snippet allows you to control 3D Graphics \
+using Sphero.\
+\>", "Item",
+ CellChangeTimes->{{3.5853394673290443`*^9, 3.585339537761606*^9}, {
+  3.585393574314768*^9, 3.585393679697488*^9}, {3.5853941628986692`*^9, 
+  3.585394169393379*^9}, {3.585401315782629*^9, 3.585401351597481*^9}}],
+
+Cell["\<\
+To calibrate, pick up Sphero, keeping him upright. Tilt him toward you and \
+slide the \[OpenCurlyDoubleQuote]Calibration Angle\[CloseCurlyDoubleQuote] \
+slider until your movement is mirrored by the Graphics object on the screen.\
+\>", "Item",
+ CellChangeTimes->{{3.5853394673290443`*^9, 3.585339537761606*^9}, {
+  3.585393574314768*^9, 3.585393772563892*^9}, {3.585394637731554*^9, 
+  3.585394639553687*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Graphics3D", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Yellow", ",", 
+        RowBox[{"Opacity", "[", ".8", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Rotate", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Rotate", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"Rotate", "[", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"PolyhedronData", "[", 
+               RowBox[{"\"\<Dodecahedron\>\"", ",", "\"\<Faces\>\""}], "]"}], 
+              ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                "\"\<IMURollAngleFiltered\>\"", "/.", "\[IndentingNewLine]", 
+                 RowBox[{"SpheroDeviceData", "[", "mySphero", "]"}]}], ")"}], 
+               " ", "Degree"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "1", ",", "0"}], "}"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+              "\"\<IMUPitchAngleFiltered\>\"", "/.", "\[IndentingNewLine]", 
+               RowBox[{"SpheroDeviceData", "[", "mySphero", "]"}]}], ")"}], 
+             " ", "Degree"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "0", ",", "0"}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+            "\"\<IMUYawAngleFiltered\>\"", "/.", "\[IndentingNewLine]", 
+             RowBox[{"SpheroDeviceData", "[", "mySphero", "]"}]}], ")"}], " ",
+            "Degree"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "]"}]}], 
+       "\[IndentingNewLine]", "}"}], ",", 
+      RowBox[{"ViewPoint", "\[Rule]", 
+       RowBox[{"4", "*", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+          RowBox[{"Sin", "[", "\[Theta]", "]"}], ",", "1"}], "}"}]}]}]}], 
+     "]"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]", ",", "0", ",", "\"\<Calibration Angle\>\""}], "}"}],
+      ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5853914259625597`*^9, 3.5853914504982567`*^9}, 
+   3.58539188481557*^9, {3.585392069397431*^9, 3.585392077383456*^9}, {
+   3.585392745654029*^9, 3.585392752707428*^9}, {3.585393239870359*^9, 
+   3.585393253542219*^9}, {3.585393378986849*^9, 3.585393404672825*^9}, {
+   3.5854172343613663`*^9, 3.585417339963352*^9}, {3.585417391721624*^9, 
+   3.585417414072082*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 692},
+WindowMargins->{{Automatic, -767}, {Automatic, -500}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 202, 3, 92, "Title"],
+Cell[784, 27, 226, 6, 51, "Subtitle"],
+Cell[CellGroupData[{
+Cell[1035, 37, 155, 2, 80, "Section"],
+Cell[CellGroupData[{
+Cell[1215, 43, 178, 2, 28, "Item"],
+Cell[1396, 47, 402, 11, 28, "Item"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1847, 64, 103, 1, 80, "Section"],
+Cell[CellGroupData[{
+Cell[1975, 69, 427, 7, 45, "Item"],
+Cell[2405, 78, 400, 7, 45, "Item"],
+Cell[CellGroupData[{
+Cell[2830, 89, 322, 5, 26, "Subitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[3155, 96, 308, 6, 23, "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[3466, 104, 384, 7, 23, "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[3853, 113, 414, 8, 23, "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[4270, 123, 405, 7, 23, "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[4678, 132, 675, 10, 55, "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5390, 147, 172, 3, 26, "Subitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15201.}],
+Cell[5565, 152, 230, 5, 23, "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15201.}]
+}, Closed]],
+Cell[5810, 160, 310, 5, 24, "Item"],
+Cell[CellGroupData[{
+Cell[6145, 169, 324, 5, 26, "Subitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[6472, 176, 218, 4, 23, "Subsubitem",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[6693, 182, 1225, 26, 63, "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}],
+Cell[7921, 210, 374, 6, 28, "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 15001.}]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8332, 221, 118, 2, 26, "Subitem"],
+Cell[CellGroupData[{
+Cell[8475, 227, 181, 4, 23, "Subsubitem"],
+Cell[8659, 233, 188, 4, 23, "Subsubitem"],
+Cell[8850, 239, 164, 3, 23, "Subsubitem"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9087, 250, 160, 2, 80, "Section"],
+Cell[CellGroupData[{
+Cell[9272, 256, 212, 3, 44, "Subsection",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[9487, 261, 403, 8, 63, "Item",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[9893, 271, 501, 11, 28, "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[10397, 284, 542, 11, 28, "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ InitializationCell->True]
+}, Closed]],
+Cell[10954, 298, 158, 2, 36, "Subsection",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[11115, 302, 317, 6, 28, "Item"],
+Cell[11435, 310, 632, 11, 28, "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[12070, 323, 589, 10, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12696, 338, 160, 2, 80, "Section"],
+Cell[CellGroupData[{
+Cell[12881, 344, 166, 2, 44, "Subsection"],
+Cell[13050, 348, 372, 7, 45, "Item"],
+Cell[13425, 357, 1123, 16, 28, "Input"],
+Cell[14551, 375, 255, 5, 44, "Subsection",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[14809, 382, 452, 8, 45, "Item"],
+Cell[15264, 392, 384, 6, 28, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15697, 404, 162, 2, 80, "Section"],
+Cell[CellGroupData[{
+Cell[15884, 410, 183, 2, 44, "Subsection"],
+Cell[16070, 414, 226, 5, 28, "Item"],
+Cell[16299, 421, 1176, 17, 28, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17512, 443, 238, 5, 44, "Subsection"],
+Cell[17753, 450, 432, 8, 46, "Item",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[18188, 460, 1395, 20, 28, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19632, 486, 164, 2, 80, "Section"],
+Cell[CellGroupData[{
+Cell[19821, 492, 396, 7, 45, "Item",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[20220, 501, 2460, 54, 199, "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}]
+}, Open  ]],
+Cell[22695, 558, 7620, 128, 232, 482, 12, "CachedBoxData", "BoxData", "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30352, 691, 187, 4, 80, "Section"],
+Cell[CellGroupData[{
+Cell[30564, 699, 329, 6, 28, "Item"],
+Cell[30896, 707, 420, 7, 45, "Item"]
+}, Open  ]],
+Cell[31331, 717, 2682, 63, 233, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
